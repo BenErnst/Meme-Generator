@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: dimgray;
+    text-align: center;
+}
+
+h1 {
+    color: wheat;
+    font-size: 3rem;
+}
