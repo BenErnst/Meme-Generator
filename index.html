@@ -11,9 +11,17 @@
 
 <body onload="onInit()">
 
-    <div class="canvas-box">
-        <canvas class="editor-canvas" height="500" width="500"></canvas>
+    <button onclick="showGallery()" class="home-btn" hidden>🏠</button>
+
+    <div class="editor" hidden>
+        <div class="canvas-box"></div>
+
+        <label for="text-line"></label>
+        <input oninput="setMemeLineTxt(this.value)" type="text" id="text-line" name="text-line" placeholder="Text Line"
+            required />
     </div>
+
+    <section class="gallery grid"></section>
 
     <script src="js/main.js"></script>
     <script src="js/memeController.js"></script>

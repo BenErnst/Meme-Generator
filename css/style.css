@@ -13,6 +13,40 @@ body {
     margin: auto;
 }
 
-.editor-canvas {
-    border: 1px solid black;
+/* .editor {
+    transition: display 1s;
+} */
+
+#text-line {
+    margin-top: 20px;
+    width: 130px;
+    height: 40px;
+}
+
+.grid {
+    display: grid;
+    max-width: 1024px;
+    height: 38vh;
+    margin: 30vh auto;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-rows: repeat(3, 150px);
+    gap: 10px;
+}
+
+.grid > * {
+    /* display: flex; */
+    min-height: 150px;
+    /* font-weight: bold; */
+    /* font-size: 2rem; */
+    /* justify-content: center; */
+    /* padding-top: 10px; */
+    border: 3px solid black;
+}
+
+.img , .home-btn {
+    cursor: pointer;
+}
+
+.img:hover {
+    opacity: 0.7;
 }
