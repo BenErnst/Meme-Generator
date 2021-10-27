@@ -19,6 +19,7 @@ body {
 
 #text-line {
     margin-top: 20px;
+    margin-bottom: 10px;
     width: 130px;
     height: 40px;
 }
@@ -49,4 +50,10 @@ body {
 
 .img:hover {
     opacity: 0.7;
+}
+
+.fontsize-resizing-btns button img, .txtlines-moving-btns button img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
 }

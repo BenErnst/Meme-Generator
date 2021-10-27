@@ -18,7 +18,17 @@
 
         <label for="text-line"></label>
         <input oninput="setMemeLineTxt(this.value)" type="text" id="text-line" name="text-line" placeholder="Text Line"
-            required />
+            autocomplete="off" required />
+
+        <section class="fontsize-resizing-btns">
+            <button onclick="onIncreaseFontSize()"><img src="icons/increase font - icon.png"></button>
+            <button onclick="onDecreaseFontSize()"><img src="icons/decrease font - icon.png"></button>
+        </section>
+
+        <section class="txtlines-moving-btns">
+            <button onclick="onMoveTxtLineUp()"><img src="icons/up-arrow-icon.png"></button>
+            <button onclick="onMoveTxtLineDown()"><img src="icons/down-arrow-icon.png"></button>
+        </section>
     </div>
 
     <section class="gallery grid"></section>

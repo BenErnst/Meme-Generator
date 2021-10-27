@@ -32,7 +32,8 @@ function drawMeme() {
     img.src = getImgUrl();
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
-        drawText(getMemeLineTxt(), gCanvas.width / 2, gCanvas.height - 430);
+        drawText(getMemeLineTxt(), gCanvas.width / 2, gCanvas.height - gDistanceFromBottom);
+        // drawText(getMemeLineTxt(), gCanvas.width / 2, getDistanceFromBottom());
     }
 }
 
@@ -58,4 +59,21 @@ function showGallery() {
     document.querySelector('.gallery').style.display = 'grid';
     clearLineTxt();
     document.querySelector('#text-line').value = '';
+    console.clear();
+}
+
+function onIncreaseFontSize() {
+    resizeFont('increase');
+}
+
+function onDecreaseFontSize() {
+    resizeFont('decrease');
+}
+
+function onMoveTxtLineUp() {
+    moveTxtLine('up');
+}
+
+function onMoveTxtLineDown() {
+    moveTxtLine('down');
 }
