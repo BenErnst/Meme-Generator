@@ -3,11 +3,16 @@
 }
 
 body {
-    background-color: dimgray;
+    background-color: rgb(175, 168, 168);
     text-align: center;
 }
 
-h1 {
-    color: wheat;
-    font-size: 3rem;
+.canvas-box {
+    width: 500px;
+    height: 500px;
+    margin: auto;
+}
+
+.editor-canvas {
+    border: 1px solid black;
 }
