@@ -14,21 +14,35 @@
     <button onclick="showGallery()" class="home-btn" hidden>🏠</button>
 
     <div class="editor" hidden>
+
         <div class="canvas-box"></div>
 
-        <label for="text-line"></label>
-        <input oninput="setMemeLineTxt(this.value)" type="text" id="text-line" name="text-line" placeholder="Text Line"
-            autocomplete="off" required />
+        <div class="control-box">
 
-        <section class="fontsize-resizing-btns">
-            <button onclick="onIncreaseFontSize()"><img src="icons/increase font - icon.png"></button>
-            <button onclick="onDecreaseFontSize()"><img src="icons/decrease font - icon.png"></button>
-        </section>
+            <section class="add-delete-btns">
+                <button class="add-text-line-btn" onclick="onAddTxtLine()"><img src="icons/add.png"></button>
+                <button class="delete-text-line-btn" onclick="onDeleteTxtLine()"><img src="icons/trash.png"></button>
+            </section>
 
-        <section class="txtlines-moving-btns">
-            <button onclick="onMoveTxtLineUp()"><img src="icons/up-arrow-icon.png"></button>
-            <button onclick="onMoveTxtLineDown()"><img src="icons/down-arrow-icon.png"></button>
-        </section>
+            <button class="switch-line-btn" onclick="onSwitchLine()">
+                <img src="icons/up-and-down-opposite-double-arrows-side-by-side.png">
+            </button>
+
+            <label for="text-line"></label>
+            <input oninput="setLineTxt(this.value)" type="text" id="text-line" name="text-line" placeholder="Text 1"
+                autocomplete="off" />
+
+            <section class="fontsize-resizing-btns">
+                <button onclick="onIncreaseFontSize()"><img src="icons/increase font - icon.png"></button>
+                <button onclick="onDecreaseFontSize()"><img src="icons/decrease font - icon.png"></button>
+            </section>
+
+            <section class="txtlines-moving-btns">
+                <button onclick="onMoveTxtLineUp()"><img src="icons/up-arrow-icon.png"></button>
+                <button onclick="onMoveTxtLineDown()"><img src="icons/down-arrow-icon.png"></button>
+            </section>
+        </div>
+
     </div>
 
     <section class="gallery grid"></section>

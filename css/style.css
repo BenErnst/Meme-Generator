@@ -18,10 +18,10 @@ body {
 } */
 
 #text-line {
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin: 10px auto 10px;
     width: 130px;
     height: 40px;
+    display: block;
 }
 
 .grid {
@@ -55,5 +55,15 @@ body {
 .fontsize-resizing-btns button img, .txtlines-moving-btns button img {
     width: 50px;
     height: 50px;
+    cursor: pointer;
+}
+
+.add-delete-btns {
+    margin-top: 10px;
+}
+
+.add-delete-btns button img, .switch-line-btn img {
+    width: 40px;
+    height: 40px;
     cursor: pointer;
 }
