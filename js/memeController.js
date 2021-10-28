@@ -23,11 +23,11 @@ function renderGallery() {
 function renderCanvas() {
     const elCanvasBox = document.querySelector('.canvas-box');
     elCanvasBox.innerHTML = '<canvas class="editor-canvas" height="500" width="500"></canvas>';
-    drawMeme();
+    // drawMeme();
 }
 
 function drawMeme() {
-    document.querySelector('.gallery').hidden = true;
+    document.querySelector('.gallery-page').hidden = true;
     var img = new Image();
     img.src = getImgUrl();
     img.onload = () => {
@@ -65,7 +65,8 @@ function drawText(text, x, y, fontSize = getFontProps()) {
 }
 
 function showEditor() {
-    document.querySelector('.gallery').style.display = 'none';
+    // document.querySelector('.gallery').style.display = 'none';
+    document.querySelector('.gallery-page').hidden = true;
     setTimeout(() => {
         document.querySelector('.home-btn').hidden = false;
         document.querySelector('.editor').hidden = false;
@@ -75,7 +76,8 @@ function showEditor() {
 function showGallery() {
     document.querySelector('.home-btn').hidden = true;
     document.querySelector('.editor').hidden = true;
-    document.querySelector('.gallery').style.display = 'grid';
+    // document.querySelector('.gallery').style.display = 'grid';
+    document.querySelector('.gallery-page').hidden = false;
     clearTxtLine();
     clearInputVal();
     gSavedTxt0 = '';

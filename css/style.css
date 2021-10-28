@@ -4,7 +4,6 @@
 
 body {
     background-color: rgb(175, 168, 168);
-    text-align: center;
 }
 
 .canvas-box {
@@ -27,20 +26,17 @@ body {
 .grid {
     display: grid;
     max-width: 1024px;
-    height: 38vh;
-    margin: 30vh auto;
+    /* height: 38vh; */
+    margin: auto;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-template-rows: repeat(3, 150px);
     gap: 10px;
+    margin-top: 10px;
 }
 
 .grid > * {
-    /* display: flex; */
     min-height: 150px;
-    /* font-weight: bold; */
-    /* font-size: 2rem; */
-    /* justify-content: center; */
-    /* padding-top: 10px; */
+    max-width: 170px;
     border: 3px solid black;
 }
 
@@ -66,4 +62,48 @@ body {
     width: 40px;
     height: 40px;
     cursor: pointer;
+}
+
+.header {
+    width: 100%;
+    /* height: 90px; */
+    background-color: chocolate;
+    border: 3px solid black;
+    border-bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+.header img {
+    width: 250px;
+    /* height: 80px; */
+    padding: 5px;
+    margin: auto;
+}
+
+.navbar {
+    background-color: blanchedalmond;
+    /* height: 100px; */
+    border: 3px solid black;
+    display: flex;
+    align-items: center;
+    border-radius: 0 0 30px 30px
+}
+
+.navbar h2 {
+    margin-left: 100px;
+    border-bottom: 1px solid black;
+    cursor: text;
+}
+
+/* .navbar h2 img {
+    width: 15px;
+    height: 15px;
+} */
+
+.navbar h1 {
+    margin: auto;
+    font-size: 2rem;
+    font-weight: bolder;
+    color: rgb(163, 93, 7);
 }
