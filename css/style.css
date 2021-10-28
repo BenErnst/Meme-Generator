@@ -6,67 +6,13 @@ body {
     background-color: rgb(175, 168, 168);
 }
 
-.canvas-box {
-    width: 500px;
-    height: 500px;
-    margin: auto;
-}
-
-/* .editor {
-    transition: display 1s;
-} */
-
-#text-line {
-    margin: 10px auto 10px;
-    width: 130px;
-    height: 40px;
-    display: block;
-}
-
-.grid {
-    display: grid;
-    max-width: 1024px;
-    /* height: 38vh; */
-    margin: auto;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-template-rows: repeat(3, 150px);
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.grid > * {
-    min-height: 150px;
-    max-width: 170px;
-    border: 3px solid black;
-}
-
-.img , .home-btn {
-    cursor: pointer;
-}
-
-.img:hover {
-    opacity: 0.7;
-}
-
-.fontsize-resizing-btns button img, .txtlines-moving-btns button img {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-}
-
-.add-delete-btns {
-    margin-top: 10px;
-}
-
-.add-delete-btns button img, .switch-line-btn img {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
+.home-btn {
+    display: none;
+    margin: 5px auto;
 }
 
 .header {
     width: 100%;
-    /* height: 90px; */
     background-color: chocolate;
     border: 3px solid black;
     border-bottom: 0;
@@ -76,14 +22,12 @@ body {
 
 .header img {
     width: 250px;
-    /* height: 80px; */
     padding: 5px;
     margin: auto;
 }
 
 .navbar {
     background-color: blanchedalmond;
-    /* height: 100px; */
     border: 3px solid black;
     display: flex;
     align-items: center;
@@ -96,14 +40,137 @@ body {
     cursor: text;
 }
 
-/* .navbar h2 img {
-    width: 15px;
-    height: 15px;
-} */
-
 .navbar h1 {
     margin: auto;
     font-size: 2rem;
     font-weight: bolder;
     color: rgb(163, 93, 7);
+}
+
+.gallery {
+    display: grid;
+    max-width: 1024px;
+    margin: auto;
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+    grid-template-rows: repeat(3, 145px);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.gallery > * {
+    min-height: 145px;
+    max-width: 170px;
+    border: 3px solid black;
+}
+
+.img , .home-btn {
+    cursor: pointer;
+}
+
+.img:hover {
+    opacity: 0.7;
+}
+
+.editor {
+    display: none;
+    margin: 1px 200px;
+    max-width: 80%;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.canvas-box {
+    max-width: 500px;
+    margin: auto;
+    max-width: 50%;
+    grid-column: 2fr;
+}
+
+#text-line {
+    margin: 10px auto 10px;
+    width: 130px;
+    height: 40px;
+    display: block;
+}
+
+.control-box {
+    display: grid;
+    justify-content: center;
+    border: 1px solid black;
+    flex: 1;
+    max-width: 50%;
+    grid-column: 1fr;
+}
+
+.fontsize-resizing-btns button img, .txtlines-moving-btns button img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.add-delete-btns {
+    margin-top: 10px;
+}
+
+.add-delete-btns button img,
+.switch-line-btn img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.color-inputs {
+    margin: auto;
+}
+.color-inputs > *{
+    width: 40px;
+    height: 40px;
+}
+
+.add-delete-btns {
+    margin: auto;
+}
+
+.social-box {
+    margin: 0 auto;
+}
+
+.share-box {
+    display: flex;
+    justify-content: center;
+}
+
+.upload-btn {
+    margin-top: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: rgb(63, 63, 168);
+    border: 3px solid black;
+    color: burlywood;
+}
+
+.upload-btn:hover {
+    opacity: 0.8;
+}
+
+.facebook-logo {
+    height: 80px;
+}
+
+
+/* TO BE IMPROVED */ 
+
+@media (max-width: 1420px) {
+    .editor {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    .canvas-box {
+        margin: auto;
+    }
+    .control-box {
+        margin: auto;
+    }
 }

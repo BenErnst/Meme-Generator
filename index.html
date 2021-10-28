@@ -11,26 +11,32 @@
 
 <body onload="onInit()">
 
-    <button onclick="showGallery()" class="home-btn" hidden>🏠</button>
+    <div class="top-bar">
+        <header class="header">
+            <!-- <h1 class="my-name">Ben Ernst</h1> -->
+            <img src="logo/logo.png">
+        </header>
+        <nav class="navbar">
+            <!-- <h2>Enter search keyword <img src="icons/search-icon.png"></h2> -->
+            <h1>GALLERY</h1>
+        </nav>
+    </div>
 
-    <div class="editor" hidden>
+    <button onclick="showGallery()" class="home-btn">🏠</button>
+
+    <div class="editor">
 
         <div class="canvas-box"></div>
 
         <div class="control-box">
 
-            <section class="add-delete-btns">
-                <button class="add-text-line-btn" onclick="onAddTxtLine()"><img src="icons/add.png"></button>
-                <button class="delete-text-line-btn" onclick="onDeleteTxtLine()"><img src="icons/trash.png"></button>
-            </section>
+            <label for="text-line"></label>
+            <input oninput="setLineTxt(this.value)" type="text" id="text-line" name="text-line" placeholder="Text 1"
+                autocomplete="off" />
 
             <button class="switch-line-btn" onclick="onSwitchLine()">
                 <img src="icons/up-and-down-opposite-double-arrows-side-by-side.png">
             </button>
-
-            <label for="text-line"></label>
-            <input oninput="setLineTxt(this.value)" type="text" id="text-line" name="text-line" placeholder="Text 1"
-                autocomplete="off" />
 
             <section class="fontsize-resizing-btns">
                 <button onclick="onIncreaseFontSize()"><img src="icons/increase font - icon.png"></button>
@@ -41,24 +47,27 @@
                 <button onclick="onMoveTxtLineUp()"><img src="icons/up-arrow-icon.png"></button>
                 <button onclick="onMoveTxtLineDown()"><img src="icons/down-arrow-icon.png"></button>
             </section>
+
+            <section class="color-inputs">
+                <input oninput="onFillTxtColor(this.value)" type="color" name="txtColor" id="txtColor" />
+                <input oninput="onStrokeTxtColor(this.value)" type="color" name="strokeColor" id="strokeColor" />
+            </section>
+
+            <section class="add-delete-btns">
+                <button class="add-text-line-btn" onclick="onAddTxtLine()"><img src="icons/add.png"></button>
+                <button class="delete-text-line-btn" onclick="onDeleteTxtLine()"><img src="icons/trash.png"></button>
+            </section>
+
+            <section class="social-box">
+                <button class="upload-btn" onclick="uploadImg()">Share Meme</button>
+                <div class="share-box"></div>
+            </section>
+
         </div>
 
     </div>
 
-    <div class="gallery-page">
-
-        <header class="header">
-            <!-- <h1 class="my-name">Ben Ernst</h1> -->
-            <img src="logo/logo.png">
-        </header>
-
-        <nav class="navbar">
-            <!-- <h2>Enter search keyword <img src="icons/search-icon.png"></h2> -->
-            <h1>GALLERY</h1>
-        </nav>
-
-        <section class="gallery grid"></section>
-    </div>
+    <section class="gallery"></section>
 
 
     <script src="js/main.js"></script>

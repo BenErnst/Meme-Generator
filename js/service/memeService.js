@@ -3,10 +3,8 @@
 var gMeme;
 var gImgs = [];
 var gDistanceFromBottom = 430;
-// var gIsTxtOnly = false;
 var gSavedTxt0 = '';
 var gSavedTxt1 = '';
-
 var gIsResizingOn = false;
 
 function createImgs() {
@@ -59,24 +57,19 @@ function setMemeImg(id) {
 
 function setLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt;
-
-    drawMeme();
     if (gMeme.selectedLineIdx === 0) gSavedTxt0 = txt;
     else gSavedTxt1 = txt;
-
+    drawMeme();
 }
 
 function resizeFont(action) {
     if (action === 'increase') gMeme.lines[gMeme.selectedLineIdx].size += 3;
     if (action === 'decrease') gMeme.lines[gMeme.selectedLineIdx].size -= 3;
-
-    console.log('gMeme.selectedLineIdx', gMeme.selectedLineIdx);
     gIsResizingOn = true;
     drawMeme();
 }
 
 function moveTxtLine(action) {
-
     if (action === 'up') gMeme.lines[gMeme.selectedLineIdx].coords.y -= 3;
     if (action === 'down') gMeme.lines[gMeme.selectedLineIdx].coords.y += 3;
     drawMeme();
@@ -84,13 +77,11 @@ function moveTxtLine(action) {
 
 function addTxtLine() {
     gMeme.lines.push(gMeme.lines[0]);
-    // console.log('gMeme.lines.length', gMeme.lines.length);
     switchLine();
 }
 
 function deleteTxtLine() {
     gMeme.lines.pop();
-    // console.log('gMeme.lines.length', gMeme.lines.length);
 }
 
 function switchLine() {
@@ -100,13 +91,17 @@ function switchLine() {
     clearInputVal();
     const x = gMeme.lines[gMeme.selectedLineIdx].coords.x;
     const y = gMeme.lines[gMeme.selectedLineIdx].coords.y;
-
     drawLineRect(x, y);
-
-    // console.log('gMeme.selectedLineIdx', gMeme.selectedLineIdx);
 }
 
-// 
+function fillTxtColor(color) {
+    console.log('gMeme.selectedLineIdx', gMeme.selectedLineIdx);
+    gMeme.lines[gMeme.selectedLineIdx].color = color;
+}
+
+function clearTxtLine() {
+    gMeme.lines[gMeme.selectedLineIdx].txt = '';
+}
 
 // Getting gMeme Properties functions:
 
@@ -128,21 +123,16 @@ function getfillColor() {
     return gMeme.lines[gMeme.selectedLineIdx].color;
 }
 
+function strokeTxtColor(color) {
+    gCtx.strokeStyle = color;
+}
+
 function getFontProps() {
-    // console.log('gMeme.selectedLineIdx', gMeme.selectedLineIdx);
-    // console.log('gMeme.lines[gMeme.selectedLineIdx].size', gMeme.lines[gMeme.selectedLineIdx].size);
-    // console.log('gMeme', gMeme);
     if (gMeme.selectedLineIdx === 0) return `${gMeme.lines[0].size}px Impact`;
     if (gMeme.selectedLineIdx === 1) return `${gMeme.lines[1].size}px Impact`;
-
-    // return `${gMeme.lines[gMeme.selectedLineIdx].size}px Impact`;
 }
 
 // 
-
-function clearTxtLine() {
-    gMeme.lines[gMeme.selectedLineIdx].txt = '';
-}
 
 const keywordsMap = {
     1: ['politics, celebrities'],

@@ -23,11 +23,10 @@ function renderGallery() {
 function renderCanvas() {
     const elCanvasBox = document.querySelector('.canvas-box');
     elCanvasBox.innerHTML = '<canvas class="editor-canvas" height="500" width="500"></canvas>';
-    // drawMeme();
+    drawMeme();
 }
 
 function drawMeme() {
-    document.querySelector('.gallery-page').hidden = true;
     var img = new Image();
     img.src = getImgUrl();
     img.onload = () => {
@@ -56,28 +55,27 @@ function drawMeme() {
 function drawText(text, x, y, fontSize = getFontProps()) {
     gCtx.textAlign = getTxtAlign();
     gCtx.lineWidth = 2;
-    gCtx.strokeStyle = 'black';
+    gCtx.strokeStyle = '';
     gCtx.fillStyle = getfillColor();
-    // gCtx.font = getFontProps();
     gCtx.font = fontSize;
     gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);
 }
 
 function showEditor() {
-    // document.querySelector('.gallery').style.display = 'none';
-    document.querySelector('.gallery-page').hidden = true;
+    document.querySelector('.gallery').style.display = 'none';
     setTimeout(() => {
-        document.querySelector('.home-btn').hidden = false;
-        document.querySelector('.editor').hidden = false;
+        document.querySelector('.home-btn').style.display = 'block';
+        document.querySelector('.editor').style.display = 'grid';
+        document.querySelector('.navbar h1').innerText = 'EDITOR';
     }, 300);
 }
 
 function showGallery() {
-    document.querySelector('.home-btn').hidden = true;
-    document.querySelector('.editor').hidden = true;
-    // document.querySelector('.gallery').style.display = 'grid';
-    document.querySelector('.gallery-page').hidden = false;
+    document.querySelector('.home-btn').style.display = 'none';
+    document.querySelector('.editor').style.display = 'none';
+    document.querySelector('.gallery').style.display = 'grid';
+    document.querySelector('.navbar h1').innerText = 'GALLERY';
     clearTxtLine();
     clearInputVal();
     gSavedTxt0 = '';
@@ -119,8 +117,6 @@ function clearInputVal() {
 }
 
 function updatePlaceHolder(lineIdx) {
-    // console.log('lineIdx', lineIdx);
-
     if (lineIdx === 0) document.querySelector('#text-line').placeholder = 'Text 1';
     else document.querySelector('#text-line').placeholder = 'Text 2';
 }
@@ -135,6 +131,53 @@ function drawLineRect(x, y) {
     gCtx.rect(x - (txtWidth / 2), y - fontSize + (fontSize / 10), txtWidth, fontSize);
     gCtx.fillStyle = 'rgba(255, 0, 0, 0)';
     gCtx.fillRect(x - (txtWidth / 2), y - fontSize + (fontSize / 10), txtWidth, fontSize);
-    gCtx.strokeStyle = 'dimgray';
+    gCtx.strokeStyle = 'black';
     gCtx.stroke();
+
+    setTimeout(() => { drawMeme(); }, 5000);
+}
+
+function onFillTxtColor(color) {
+    fillTxtColor(color);
+}
+
+function onStrokeTxtColor(color) {
+    strokeTxtColor(color);
+}
+
+
+// UPLOADING METHOD:
+
+function uploadImg() {
+    const imgDataUrl = gCanvas.toDataURL("image/jpeg");
+
+    // A function to be called if request succeeds
+    function onSuccess(uploadedImgUrl) {
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl);
+
+        document.querySelector('.share-box').innerHTML = `
+        <a class="btn share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+        <img class="facebook-logo" src="icons/facebook-logo.png">
+        </a>`
+    }
+    doUploadImg(imgDataUrl, onSuccess);
+}
+
+function doUploadImg(imgDataUrl, onSuccess) {
+
+    const formData = new FormData();
+    formData.append('img', imgDataUrl)
+
+    fetch('//ca-upload.com/here/upload.php', {
+        method: 'POST',
+        body: formData
+    })
+        .then(res => res.text())
+        .then((url) => {
+            console.log('Got back live url:', url);
+            onSuccess(url)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
 }
