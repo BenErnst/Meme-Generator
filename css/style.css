@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    -webkit-appearance: none;
 }
 
 body {
@@ -75,7 +76,7 @@ body {
     display: none;
     margin: 1px 200px;
     max-width: 80%;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2fr 1000px;
     grid-template-rows: 1fr;
 }
 
@@ -102,7 +103,7 @@ body {
     grid-column: 1fr;
 }
 
-.fontsize-resizing-btns button img, .txtlines-moving-btns button img {
+.font-resizing-btns button img, .txtlines-moving-btns button img {
     width: 50px;
     height: 50px;
     cursor: pointer;
@@ -135,7 +136,7 @@ body {
     margin: 0 auto;
 }
 
-.share-box {
+.facebook-box {
     display: flex;
     justify-content: center;
 }
@@ -162,7 +163,7 @@ body {
 
 /* TO BE IMPROVED */ 
 
-@media (max-width: 1420px) {
+@media (max-width: 400px) {
     .editor {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;

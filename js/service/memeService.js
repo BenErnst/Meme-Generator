@@ -3,8 +3,8 @@
 var gMeme;
 var gImgs = [];
 var gDistanceFromBottom = 430;
-var gSavedTxt0 = '';
-var gSavedTxt1 = '';
+// var gSavedTxt0 = '';
+// var gSavedTxt1 = '';
 var gIsResizingOn = false;
 
 function createImgs() {
@@ -28,9 +28,10 @@ function createMeme() {
             txt: '',
             size: 50,
             align: 'center',
-            color: 'white',
+            fillColor: 'white',
+            strokeColor: 'black',
             coords: {
-                x: 250,
+                x: 200,
                 y: 70
             }
         },
@@ -38,10 +39,11 @@ function createMeme() {
             txt: '',
             size: 50,
             align: 'center',
-            color: 'white',
+            fillColor: 'white',
+            strokeColor: 'black',
             coords: {
-                x: 250,
-                y: 450
+                x: 200,
+                y: 350
             }
         }]
     }
@@ -56,15 +58,21 @@ function setMemeImg(id) {
 }
 
 function setLineTxt(txt) {
-    gMeme.lines[gMeme.selectedLineIdx].txt = txt;
-    if (gMeme.selectedLineIdx === 0) gSavedTxt0 = txt;
-    else gSavedTxt1 = txt;
+    const idx = gMeme.selectedLineIdx;
+    gMeme.lines[idx].txt += txt;
+    drawMeme();
+}
+
+function deleteLineTxt(txt) {
+    const idx = gMeme.selectedLineIdx;
+    gMeme.lines[idx].txt = txt;
     drawMeme();
 }
 
 function resizeFont(action) {
-    if (action === 'increase') gMeme.lines[gMeme.selectedLineIdx].size += 3;
-    if (action === 'decrease') gMeme.lines[gMeme.selectedLineIdx].size -= 3;
+    const idx = gMeme.selectedLineIdx;
+    if (action === 'increase') gMeme.lines[idx].size += 3;
+    if (action === 'decrease') gMeme.lines[idx].size -= 3;
     gIsResizingOn = true;
     drawMeme();
 }
@@ -91,16 +99,18 @@ function switchLine() {
     clearInputVal();
     const x = gMeme.lines[gMeme.selectedLineIdx].coords.x;
     const y = gMeme.lines[gMeme.selectedLineIdx].coords.y;
-    drawLineRect(x, y);
+    const idx = gMeme.selectedLineIdx;
+    drawLineRect(x, y, idx);
 }
 
 function fillTxtColor(color) {
-    console.log('gMeme.selectedLineIdx', gMeme.selectedLineIdx);
-    gMeme.lines[gMeme.selectedLineIdx].color = color;
+    const idx = gMeme.selectedLineIdx;
+    gMeme.lines[idx].fillColor = color;
 }
 
-function clearTxtLine() {
-    gMeme.lines[gMeme.selectedLineIdx].txt = '';
+function strokeTxtColor(color) {
+    const idx = gMeme.selectedLineIdx;
+    gMeme.lines[idx].strokeColor = color;
 }
 
 // Getting gMeme Properties functions:
@@ -116,20 +126,23 @@ function getMemeLineTxt() {
 }
 
 function getTxtAlign() {
-    return gMeme.lines[gMeme.selectedLineIdx].align;
+    const idx = gMeme.selectedLineIdx;
+    return gMeme.lines[idx].align;
 }
 
-function getfillColor() {
-    return gMeme.lines[gMeme.selectedLineIdx].color;
+function getfillColor(idx) {
+    // const idx = gMeme.selectedLineIdx;
+    return gMeme.lines[idx].fillColor;
+
 }
 
-function strokeTxtColor(color) {
-    gCtx.strokeStyle = color;
+function getStrokeColor(idx) {
+    // const idx = gMeme.selectedLineIdx;
+    return gMeme.lines[idx].strokeColor;
 }
 
-function getFontProps() {
-    if (gMeme.selectedLineIdx === 0) return `${gMeme.lines[0].size}px Impact`;
-    if (gMeme.selectedLineIdx === 1) return `${gMeme.lines[1].size}px Impact`;
+function getFontProps(idx) {
+    return `${gMeme.lines[idx].size}px Impact`;
 }
 
 // 

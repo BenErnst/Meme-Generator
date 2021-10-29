@@ -22,7 +22,7 @@
         </nav>
     </div>
 
-    <button onclick="showGallery()" class="home-btn">🏠</button>
+    <button onclick="backHome()" class="home-btn">🏠</button>
 
     <div class="editor">
 
@@ -31,14 +31,14 @@
         <div class="control-box">
 
             <label for="text-line"></label>
-            <input oninput="setLineTxt(this.value)" type="text" id="text-line" name="text-line" placeholder="Text 1"
-                autocomplete="off" />
+            <input oninput="onSetLineTxt(this.value)" onkeydown="getEventKey(event)" type="text" id="text-line"
+                name="text-line" placeholder="Text 1" autocomplete="off" />
 
             <button class="switch-line-btn" onclick="onSwitchLine()">
                 <img src="icons/up-and-down-opposite-double-arrows-side-by-side.png">
             </button>
 
-            <section class="fontsize-resizing-btns">
+            <section class="font-resizing-btns">
                 <button onclick="onIncreaseFontSize()"><img src="icons/increase font - icon.png"></button>
                 <button onclick="onDecreaseFontSize()"><img src="icons/decrease font - icon.png"></button>
             </section>
@@ -49,8 +49,8 @@
             </section>
 
             <section class="color-inputs">
-                <input oninput="onFillTxtColor(this.value)" type="color" name="txtColor" id="txtColor" />
-                <input oninput="onStrokeTxtColor(this.value)" type="color" name="strokeColor" id="strokeColor" />
+                <input oninput="onFillTxtColor(this.value)" type="color" name="txt-color" id="txt-color" />
+                <input oninput="onStrokeTxtColor(this.value)" type="color" name="stroke-color" id="stroke-color" />
             </section>
 
             <section class="add-delete-btns">
@@ -60,7 +60,7 @@
 
             <section class="social-box">
                 <button class="upload-btn" onclick="uploadImg()">Share Meme</button>
-                <div class="share-box"></div>
+                <div class="facebook-box"></div>
             </section>
 
         </div>
