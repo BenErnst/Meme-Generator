@@ -7,6 +7,14 @@ body {
     background-color: rgb(175, 168, 168);
 }
 
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
 .home-btn {
     display: none;
     margin: 5px auto;
@@ -32,17 +40,11 @@ body {
 }
 
 .navbar {
-    background-color: blanchedalmond;
-    border: 3px solid black;
     display: flex;
     align-items: center;
+    background-color: blanchedalmond;
+    border: 3px solid black;
     border-radius: 0 0 30px 30px
-}
-
-.navbar h2 {
-    margin-left: 100px;
-    border-bottom: 1px solid black;
-    cursor: text;
 }
 
 .navbar h1 {
@@ -56,56 +58,45 @@ body {
     display: grid;
     max-width: 1024px;
     margin: auto;
+    margin-top: 10px;
     grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
     grid-template-rows: repeat(3, 145px);
     gap: 10px;
-    margin-top: 10px;
 }
 
 .gallery > * {
-    min-height: 145px;
     max-width: 170px;
+    min-height: 145px;
     border: 3px solid black;
-}
-
-.img , .home-btn {
-    cursor: pointer;
 }
 
 .img:hover {
     opacity: 0.7;
+    cursor: pointer;
 }
 
 .editor {
     display: none;
-    margin: 1px 200px;
+    margin: 1px 248px;
     max-width: 80%;
     grid-template-columns: 2fr 500px;
     grid-template-rows: 1fr;
 }
 
 .canvas-box {
-    max-width: 500px;
     margin: auto;
     margin-left: 0;
     max-width: 50%;
-    /* grid-column: 2fr; */
-    /* border: 1px solid black; */
 }
 
 .control-box {
-    /* display: flex; */
-    flex-direction: column;
-    justify-content: center;
-    /* border: 1px solid black; */
+    min-width: 70%;
+    padding: 11%;
+    margin: 20px 10% 20px;
+    grid-column: 2;
     border-radius: 20px;
     background-color:lightslategray;
-    min-width: 70%;
-    /* margin-right: 0; */
-    grid-column: 2;
-    margin: 30px auto 30px;
-    padding: 40px;
-
+    box-shadow: inset 0 0 10px 10px darkslategrey;
 }
 
 .control-box > * {
@@ -115,40 +106,29 @@ body {
 .text-lines-box {
     display: flex;
     justify-content: center;
+    margin-right: 15px;
 }
 
 #text-line {
-    /* margin: 10px auto 10px; */
     width: 130px;
     height: 40px;
     display: block;
+}
+
+.switch-line-btn img {
+    width: 20px;
 }
 
 .font-props-box {
     display: flex;
     flex-direction: row;
     margin: 5px;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
 }
 
 .font-resizing-btns button img,
 .txtlines-moving-btns button img {
     width: 30px;
-    /* height: 40px; */
-    cursor: pointer;
-}
-
-.align-btns button img {
-    width: 20px;
-}
-
-.switch-line-btn {
-    align-self: center;
-}
-
-.align-btns {
-    display: flex;
-    margin: auto;
 }
 
 .font-resizing-btns {
@@ -159,8 +139,7 @@ body {
 .font-type-dropdown {
     border: 2px solid black;
     background-color: rgb(148, 156, 173);
-    margin: 20px;
-    /* margin-right:; */
+    margin: 20px 50px 20px 10px;
     font-weight: bold;
     font-size: 1rem;
     cursor: pointer;
@@ -175,29 +154,22 @@ body {
     background-color: rgb(132, 144, 170);
 }
 
-.add-delete-btns {
-    margin-top: 10px;
+.align-btns button img {
+    width: 20px;
 }
 
-.add-delete-btns button img,
-.switch-line-btn img {
-    width: 30px;
-    /* height: 30px; */
-    cursor: pointer;
+.align-btns {
+    margin: auto;
 }
 
 .color-inputs {
-    margin: 2px auto;
-}
-.color-inputs > *{
-    width: 40px;
-    /* height: 40px; */
-    cursor: pointer;
+    margin: 5px;
 }
 
-/* .add-delete-btns {
-    margin: auto;
-} */
+.color-inputs > * {
+    width: 40px;
+    cursor: pointer;
+}
 
 .stickers-box > * {
     width: 60px;
@@ -205,26 +177,30 @@ body {
     cursor: pointer;
 }
 
+.stickers-box img:hover {
+    animation-name: lifting;
+    animation-duration: 0.1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
 .social-box {
     display: flex;
-    margin: 0;
+    margin-left: 17px;
     justify-content: center;
     align-items: center;
     padding: 0;
 }
 
 .upload-btn {
-    /* margin-top: 30px; */
     position: relative;
-    cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
-    border-radius: 10px;
-    background-color: rgb(63, 63, 168);
     border: 3px solid black;
+    border-radius: 10px;
     color: burlywood;
+    background-color: rgb(63, 63, 168);
     transition: padding 0.5s;
-    /* padding-top: 0; */
 }
 
 .upload-btn:hover {
@@ -235,20 +211,16 @@ body {
 .upload-btn span {
     visibility: hidden;
     position: absolute;
-    /* transition: visibility 0.3s; */
 }
 
 .upload-btn:hover span {
     right: 5px;
-    /* left: 50px; */
-    /* text-align: center; */
     line-height: 20px;
     visibility: visible;
 }
 
 .facebook-box {
     padding: 3px 0 0 10px;
-    /* padding-top: 4px; */
 }
 
 .facebook-logo {
@@ -256,10 +228,12 @@ body {
     height: 17px;
 }
 
-button:hover {
-    cursor: pointer;
+.facebook-logo:hover {
+    opacity: 0.7;
 }
  
+
+/* BreakPoints */
 
 @media (max-width: 1000px) {
     .editor {
@@ -275,11 +249,13 @@ button:hover {
         width: 400px;
         margin-left: 0;
     }
+    .gallery {
+        width: 450px;
+    }
     .home-btn {
         margin-left: 180px;
     }
     .editor {
-        /* margin: 0 */
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: 1fr 1fr;
         margin-left: 0;
@@ -291,5 +267,36 @@ button:hover {
         grid-row: 2;
         grid-column: 1;
         margin: auto;
+    }
+}
+
+@media (max-width: 300px) {
+    .top-bar {
+        width: 200px;
+        margin-left: 0;
+    }
+    .gallery {
+        grid-template-columns: 1fr;
+        margin-left: 15px;
+    }
+    .home-btn {
+        margin-left: 85px;
+    }
+}
+
+
+/* Animation */
+@keyframes lifting {
+    25% {
+        transform: translateY(1px);
+    }
+    50% {
+        transform: translateY(3px);
+    }
+    75% {
+        transform: translateY(-1px);
+    }
+    100% {
+        transform: translateY(0px);
     }
 }

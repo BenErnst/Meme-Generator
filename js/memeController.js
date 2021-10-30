@@ -4,8 +4,6 @@ var gCanvas;
 var gCtx;
 var gIsDeleteKeyDown = false;
 
-var gImg;
-
 function onInit() {
     createImgs();
     renderGallery();
@@ -14,7 +12,6 @@ function onInit() {
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
 }
-
 
 function renderGallery() {
     const elGallery = document.querySelector('.gallery');
@@ -27,22 +24,30 @@ function renderGallery() {
 function renderCanvas() {
     const elCanvasBox = document.querySelector('.canvas-box');
     elCanvasBox.innerHTML = '<canvas height="400" width="400"></canvas>';
-    // drawMeme();
 }
 
 function drawMeme() {
     var img = new Image();
     img.src = getImgUrl();
+
     // Drawing Image:
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
+
     // Drawing Texts:
     const topLine = gMeme.lines[0];
     const bottomLine = gMeme.lines[1];
     drawText(topLine.txt, topLine.coords.x, topLine.coords.y, 0);
     drawText(bottomLine.txt, bottomLine.coords.x, bottomLine.coords.y, 1);
+}
 
-    // img.onload = () => {
-    // }
+function drawText(text, x, y, idx) {
+    gCtx.textAlign = getTxtAlign(idx);
+    gCtx.lineWidth = 2;
+    gCtx.strokeStyle = getStrokeColor(idx);
+    gCtx.fillStyle = getfillColor(idx);
+    gCtx.font = getFontProps(idx);
+    gCtx.fillText(text, x, y);
+    gCtx.strokeText(text, x, y);
 }
 
 function onSetLineTxt(txtInput) {
@@ -58,16 +63,6 @@ function onSetLineTxt(txtInput) {
 
 function getEventKey(event) {
     gIsDeleteKeyDown = (event.key === 'Backspace') ? true : false;
-}
-
-function drawText(text, x, y, idx) {
-    gCtx.textAlign = getTxtAlign(idx);
-    gCtx.lineWidth = 2;
-    gCtx.strokeStyle = getStrokeColor(idx);
-    gCtx.fillStyle = getfillColor(idx);
-    gCtx.font = getFontProps(idx);
-    gCtx.fillText(text, x, y);
-    gCtx.strokeText(text, x, y);
 }
 
 function showEditor() {
@@ -89,13 +84,16 @@ function backHome() {
     clearCanvas();
     resetMeme();
     updatePlaceHolder(gMeme.selectedLineIdx);
-    document.querySelector('.facebook-box').innerHTML = ''
-
+    document.querySelector('.facebook-box').innerHTML = '';
     console.clear();
 }
 
 function clearCanvas() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+}
+
+function onSwitchLine() {
+    switchLine();
 }
 
 function onIncreaseFontSize() {
@@ -124,18 +122,6 @@ function onMoveTxtLineDown() {
     moveTxtLine('down');
 }
 
-function onAddTxtLine() {
-    addTxtLine();
-}
-
-function onDeleteTxtLine() {
-    deleteTxtLine();
-}
-
-function onSwitchLine() {
-    switchLine();
-}
-
 function clearInputVal() {
     document.querySelector('#text-line').value = '';
 }
@@ -162,6 +148,7 @@ function onFillTxtColor(color) {
     fillTxtColor(color);
     drawMeme();
 }
+
 function onStrokeTxtColor(color) {
     strokeTxtColor(color);
     drawMeme();
@@ -174,7 +161,7 @@ function resetColorInputs() {
 }
 
 
-// UPLOADING METHOD:
+// SHARING METHOD:
 
 function uploadImg() {
     const imgDataUrl = gCanvas.toDataURL("image/jpeg");

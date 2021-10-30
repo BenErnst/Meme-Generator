@@ -2,8 +2,6 @@
 
 var gMeme;
 var gImgs = [];
-var gDistanceFromBottom = 430;
-var gIsResizingOn = false;
 
 function createImgs() {
     var imgNum = 0;
@@ -73,7 +71,6 @@ function resizeFont(action) {
     const idx = gMeme.selectedLineIdx;
     if (action === 'increase') gMeme.lines[idx].size += 3;
     if (action === 'decrease') gMeme.lines[idx].size -= 3;
-    gIsResizingOn = true;
     drawMeme();
 }
 
@@ -94,23 +91,14 @@ function moveTxtLine(action) {
     drawMeme();
 }
 
-function addTxtLine() {
-    gMeme.lines.push(gMeme.lines[0]);
-    switchLine();
-}
-
-function deleteTxtLine() {
-    gMeme.lines.pop();
-}
-
 function switchLine() {
     if (gMeme.selectedLineIdx === 0) gMeme.selectedLineIdx++;
     else gMeme.selectedLineIdx--;
     updatePlaceHolder(gMeme.selectedLineIdx);
     clearInputVal();
-    const x = gMeme.lines[gMeme.selectedLineIdx].coords.x;
-    const y = gMeme.lines[gMeme.selectedLineIdx].coords.y;
     const idx = gMeme.selectedLineIdx;
+    const x = gMeme.lines[idx].coords.x;
+    const y = gMeme.lines[idx].coords.y;
     drawLineRect(x, y, idx);
 }
 
@@ -141,18 +129,15 @@ function getMemeLineTxt() {
 }
 
 function getTxtAlign(idx) {
-    // const idx = gMeme.selectedLineIdx;
     return gMeme.lines[idx].align;
 }
 
 function getfillColor(idx) {
-    // const idx = gMeme.selectedLineIdx;
     return gMeme.lines[idx].fillColor;
 
 }
 
 function getStrokeColor(idx) {
-    // const idx = gMeme.selectedLineIdx;
     return gMeme.lines[idx].strokeColor;
 }
 

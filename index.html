@@ -13,11 +13,9 @@
 
     <div class="top-bar">
         <header class="header">
-            <!-- <h1 class="my-name">Ben Ernst</h1> -->
             <img src="logo/logo.png">
         </header>
         <nav class="navbar">
-            <!-- <h2>Enter search keyword <img src="icons/search-icon.png"></h2> -->
             <h1>GALLERY</h1>
         </nav>
     </div>
@@ -40,7 +38,6 @@
                 </button>
             </section>
 
-
             <section class="font-props-box">
                 <section class="font-resizing-btns">
                     <button onclick="onIncreaseFontSize()"><img src="icons/increase font - icon.png"></button>
@@ -60,7 +57,6 @@
                 </section>
             </section>
 
-
             <section class="txtlines-moving-btns">
                 <button onclick="onMoveTxtLineUp()"><img src="icons/up-arrow-icon.png"></button>
                 <button onclick="onMoveTxtLineDown()"><img src="icons/down-arrow-icon.png"></button>
@@ -71,19 +67,11 @@
                 <input oninput="onStrokeTxtColor(this.value)" type="color" name="stroke-color" id="stroke-color" />
             </section>
 
-            <!-- <section class="add-delete-btns">
-                <button class="add-text-line-btn" onclick="onAddTxtLine()"><img src="icons/add.png"></button>
-                <button class="delete-text-line-btn" onclick="onDeleteTxtLine()"><img src="icons/trash.png"></button>
-            </section> -->
-
             <section class="stickers-box">
                 <img src="stickers/hat-sticker.png" onclick="onAddSticker(this)" id="stickerImg">
                 <img src="stickers/sunglasses-sticker.png" onclick="onAddSticker(this)" id="stickerImg">
                 <img src="stickers/cigarette-sticker.png" onclick="onAddSticker(this)" id="stickerImg">
             </section>
-
-            <!-- <input onclick="console.log('hi')" type="image" name="stickers-input" id="stickers-input"
-                src="stickers/hat-sticker.png"> -->
 
             <section class="social-box">
                 <button class="upload-btn" onclick="uploadImg()">Share Meme<span> ➡</span></button>
@@ -95,7 +83,6 @@
     </div>
 
     <section class="gallery"></section>
-
 
     <script src="js/main.js"></script>
     <script src="js/stickerController.js"></script>
