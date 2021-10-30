@@ -30,30 +30,36 @@
 
         <div class="control-box">
 
-            <label for="text-line"></label>
-            <input oninput="onSetLineTxt(this.value)" onkeydown="getEventKey(event)" type="text" id="text-line"
-                name="text-line" placeholder="Text 1" autocomplete="off" />
+            <section class="text-lines-box">
+                <label for="text-line"></label>
+                <input oninput="onSetLineTxt(this.value)" onkeydown="getEventKey(event)" type="text" id="text-line"
+                    name="text-line" placeholder="Text 1" autocomplete="off" />
 
-            <button class="switch-line-btn" onclick="onSwitchLine()">
-                <img src="icons/up-and-down-opposite-double-arrows-side-by-side.png">
-            </button>
-
-            <section class="font-resizing-btns">
-                <button onclick="onIncreaseFontSize()"><img src="icons/increase font - icon.png"></button>
-                <button onclick="onDecreaseFontSize()"><img src="icons/decrease font - icon.png"></button>
+                <button class="switch-line-btn" onclick="onSwitchLine()">
+                    <img src="icons/up-and-down-opposite-double-arrows-side-by-side.png">
+                </button>
             </section>
 
-            <select onchange="onSetFontType(this.value)" class="font-type-dropdown">
-                <option value="Impact">Impact</option>
-                <option value="Arial">Arial</option>
-                <option value="Cursive">Cursive</option>
-            </select>
 
-            <section class="align-btns">
-                <button onclick="onAlign('right')"><img src="icons/align-to-left.png"></button>
-                <button onclick="onAlign('center')"><img src="icons/center-text-alignment.png"></button>
-                <button onclick="onAlign('left')"><img src="icons/align-to-right.png"></button>
+            <section class="font-props-box">
+                <section class="font-resizing-btns">
+                    <button onclick="onIncreaseFontSize()"><img src="icons/increase font - icon.png"></button>
+                    <button onclick="onDecreaseFontSize()"><img src="icons/decrease font - icon.png"></button>
+                </section>
+
+                <select onchange="onSetFontType(this.value)" class="font-type-dropdown">
+                    <option value="Impact">Impact</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Cursive">Cursive</option>
+                </select>
+
+                <section class="align-btns">
+                    <button onclick="onAlign('right')"><img src="icons/align-to-left.png"></button>
+                    <button onclick="onAlign('center')"><img src="icons/center-text-alignment.png"></button>
+                    <button onclick="onAlign('left')"><img src="icons/align-to-right.png"></button>
+                </section>
             </section>
+
 
             <section class="txtlines-moving-btns">
                 <button onclick="onMoveTxtLineUp()"><img src="icons/up-arrow-icon.png"></button>
@@ -80,7 +86,7 @@
                 src="stickers/hat-sticker.png"> -->
 
             <section class="social-box">
-                <button class="upload-btn" onclick="uploadImg()">Share Meme</button>
+                <button class="upload-btn" onclick="uploadImg()">Share Meme<span> ➡</span></button>
                 <div class="facebook-box"></div>
             </section>
 
