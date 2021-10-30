@@ -2,7 +2,9 @@
 
 var gCanvas;
 var gCtx;
-var gIsDeleteKeyOn = false;
+var gIsDeleteKeyDown = false;
+
+var gImg;
 
 function onInit() {
     createImgs();
@@ -11,8 +13,8 @@ function onInit() {
     renderCanvas();
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
-    // drawMeme();
 }
+
 
 function renderGallery() {
     const elGallery = document.querySelector('.gallery');
@@ -31,20 +33,21 @@ function renderCanvas() {
 function drawMeme() {
     var img = new Image();
     img.src = getImgUrl();
-    img.onload = () => {
-        // Drawing Image:
-        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
-        // Drawing Texts:
-        const topLine = gMeme.lines[0];
-        const bottomLine = gMeme.lines[1];
-        drawText(topLine.txt, topLine.coords.x, topLine.coords.y, 0);
-        drawText(bottomLine.txt, bottomLine.coords.x, bottomLine.coords.y, 1);
-    }
+    // Drawing Image:
+    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
+    // Drawing Texts:
+    const topLine = gMeme.lines[0];
+    const bottomLine = gMeme.lines[1];
+    drawText(topLine.txt, topLine.coords.x, topLine.coords.y, 0);
+    drawText(bottomLine.txt, bottomLine.coords.x, bottomLine.coords.y, 1);
+
+    // img.onload = () => {
+    // }
 }
 
 function onSetLineTxt(txtInput) {
     var txt = '';
-    if (gIsDeleteKeyOn) {
+    if (gIsDeleteKeyDown) {
         txt = txtInput;
         deleteLineTxt(txt);
     } else {
@@ -54,16 +57,15 @@ function onSetLineTxt(txtInput) {
 }
 
 function getEventKey(event) {
-    gIsDeleteKeyOn = (event.key === 'Backspace') ? true : false;
+    gIsDeleteKeyDown = (event.key === 'Backspace') ? true : false;
 }
 
 function drawText(text, x, y, idx) {
-    gCtx.textAlign = getTxtAlign();
+    gCtx.textAlign = getTxtAlign(idx);
     gCtx.lineWidth = 2;
-    // gCtx.strokeStyle = '';
-    gCtx.strokeStyle = (idx === 0) ? getStrokeColor(0) : getStrokeColor(1);
-    gCtx.fillStyle = (idx === 0) ? getfillColor(0) : getfillColor(1);
-    gCtx.font = (idx === 0) ? getFontProps(0) : getFontProps(1);
+    gCtx.strokeStyle = getStrokeColor(idx);
+    gCtx.fillStyle = getfillColor(idx);
+    gCtx.font = getFontProps(idx);
     gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);
 }
@@ -85,16 +87,9 @@ function backHome() {
     clearInputVal();
     resetColorInputs();
     clearCanvas();
-    // gSavedTxt0 = '';
-    // gSavedTxt1 = '';
-    gMeme.lines.forEach(line => {
-        line.txt = '';
-        line.size = 50;
-        line.fillColor = 'white';
-        line.strokeColor = 'black';
-    });
-    gMeme.selectedLineIdx = 0;
+    resetMeme();
     updatePlaceHolder(gMeme.selectedLineIdx);
+    document.querySelector('.facebook-box').innerHTML = ''
 
     console.clear();
 }
@@ -103,16 +98,22 @@ function clearCanvas() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
 }
 
-// function clearMeme() {
-
-// }
-
 function onIncreaseFontSize() {
     resizeFont('increase');
 }
 
 function onDecreaseFontSize() {
     resizeFont('decrease');
+}
+
+function onSetFontType(fontType) {
+    setFontType(fontType);
+    drawMeme();
+}
+
+function onAlign(side) {
+    align(side);
+    drawMeme();
 }
 
 function onMoveTxtLineUp() {

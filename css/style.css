@@ -103,10 +103,30 @@ body {
     grid-column: 1fr;
 }
 
-.font-resizing-btns button img, .txtlines-moving-btns button img {
-    width: 50px;
-    height: 50px;
+.font-resizing-btns button img,
+.txtlines-moving-btns button img,
+.align-btns button img {
+    width: 40px;
+    height: 40px;
     cursor: pointer;
+}
+
+.font-type-dropdown {
+    border: 2px solid black;
+    background-color: rgb(148, 156, 173);
+    margin: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    -webkit-appearance: push-button;
+}
+
+.font-type-dropdown > * {
+    font-weight: bold;
+}
+
+.font-type-dropdown:hover {
+    background-color: rgb(132, 144, 170);
 }
 
 .add-delete-btns {
@@ -115,8 +135,8 @@ body {
 
 .add-delete-btns button img,
 .switch-line-btn img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
 }
 
@@ -126,10 +146,17 @@ body {
 .color-inputs > *{
     width: 40px;
     height: 40px;
+    cursor: pointer;
 }
 
 .add-delete-btns {
     margin: auto;
+}
+
+.stickers-box > * {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
 }
 
 .social-box {

@@ -3,8 +3,6 @@
 var gMeme;
 var gImgs = [];
 var gDistanceFromBottom = 430;
-// var gSavedTxt0 = '';
-// var gSavedTxt1 = '';
 var gIsResizingOn = false;
 
 function createImgs() {
@@ -27,6 +25,7 @@ function createMeme() {
         lines: [{
             txt: '',
             size: 50,
+            font: 'Impact',
             align: 'center',
             fillColor: 'white',
             strokeColor: 'black',
@@ -38,6 +37,7 @@ function createMeme() {
         {
             txt: '',
             size: 50,
+            font: 'Impact',
             align: 'center',
             fillColor: 'white',
             strokeColor: 'black',
@@ -77,9 +77,20 @@ function resizeFont(action) {
     drawMeme();
 }
 
+function setFontType(fontType) {
+    const idx = gMeme.selectedLineIdx;
+    gMeme.lines[idx].font = fontType;
+}
+
+function align(side) {
+    const idx = gMeme.selectedLineIdx;
+    gMeme.lines[idx].align = side;
+}
+
 function moveTxtLine(action) {
-    if (action === 'up') gMeme.lines[gMeme.selectedLineIdx].coords.y -= 3;
-    if (action === 'down') gMeme.lines[gMeme.selectedLineIdx].coords.y += 3;
+    const idx = gMeme.selectedLineIdx;
+    if (action === 'up') gMeme.lines[idx].coords.y -= 3;
+    if (action === 'down') gMeme.lines[idx].coords.y += 3;
     drawMeme();
 }
 
@@ -113,6 +124,10 @@ function strokeTxtColor(color) {
     gMeme.lines[idx].strokeColor = color;
 }
 
+function resetMeme() {
+    createMeme();
+}
+
 // Getting gMeme Properties functions:
 
 function getImgUrl() {
@@ -125,8 +140,8 @@ function getMemeLineTxt() {
     return line.txt;
 }
 
-function getTxtAlign() {
-    const idx = gMeme.selectedLineIdx;
+function getTxtAlign(idx) {
+    // const idx = gMeme.selectedLineIdx;
     return gMeme.lines[idx].align;
 }
 
@@ -142,7 +157,7 @@ function getStrokeColor(idx) {
 }
 
 function getFontProps(idx) {
-    return `${gMeme.lines[idx].size}px Impact`;
+    return `${gMeme.lines[idx].size}px ${gMeme.lines[idx].font}`;
 }
 
 // 
