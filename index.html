@@ -57,14 +57,16 @@
                 </section>
             </section>
 
-            <section class="txtlines-moving-btns">
-                <button onclick="onMoveTxtLineUp()"><img src="icons/up-arrow-icon.png"></button>
-                <button onclick="onMoveTxtLineDown()"><img src="icons/down-arrow-icon.png"></button>
-            </section>
+            <section class="moving-and-colors-btns">
+                <section class="txtlines-moving-btns">
+                    <button onclick="onMoveTxtLineUp()"><img src="icons/up-arrow-icon.png"></button>
+                    <button onclick="onMoveTxtLineDown()"><img src="icons/down-arrow-icon.png"></button>
+                </section>
 
-            <section class="color-inputs">
-                <input oninput="onFillTxtColor(this.value)" type="color" name="txt-color" id="txt-color" />
-                <input oninput="onStrokeTxtColor(this.value)" type="color" name="stroke-color" id="stroke-color" />
+                <section class="color-inputs">
+                    <input oninput="onFillTxtColor(this.value)" type="color" name="txt-color" id="txt-color" />
+                    <input oninput="onStrokeTxtColor(this.value)" type="color" name="stroke-color" id="stroke-color" />
+                </section>
             </section>
 
             <section class="stickers-box">
@@ -73,24 +75,32 @@
                 <img src="stickers/cigarette-sticker.png" onclick="onAddSticker(this)" id="stickerImg">
             </section>
 
-            <section class="social-box">
-                <button class="upload-btn" onclick="uploadImg()">Share Meme<span> ➡</span></button>
-                <div class="facebook-box"></div>
+            <section class="sharing-box">
+
+                <section class="social-box">
+                    <button class="upload-btn" onclick="uploadImg()">Share Meme</button>
+                    <!-- <div class="facebook-box"></div> -->
+                </section>
+
+                <a href="#" class="download-btn" onclick="downloadMeme(this)" download="">Download Meme</a>
+
+                <!--  -->
+                <input type="file" name="image" onchange="onImgInput(event)" />
+
+                <button class="web-api-btn">Let Your Friends Generate Their Meme</button>
+                <div class="overlay"></div>
+                <div class="share-modal">
+                    <button onclick="closeModal()">X</button>
+                    <h2>SHARE YOUR MEME</h2>
+                    <section>
+                        <div class="facebook-box"></div>
+                        <div class="whatsapp-box"></div>
+                        <div class="twitter-box"></div>
+                    </section>
+                </div>
+
             </section>
 
-            <a href="#" onclick="downloadMeme(this)" download="">Download Meme</a>
-
-            <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
-
-            <!--  -->
-            <button class="share-btn">Let Your Friends Generate Their Meme</button>
-            <div class="overlay"></div>
-            <div class="share-modal">
-                <h2>Share Now</h2>
-                <button>Social Link</button>
-                <button>Social Link</button>
-                <button>Social Link</button>
-            </div>
         </div>
 
     </div>
