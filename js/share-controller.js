@@ -46,7 +46,7 @@ function initWebShareApi() {
 
     const title = window.document.title;
     var url = window.document.location.href;
-    const data = gCanvas.toDataURL();
+    const data = gCanvas.toDataURL("image/jpeg");
     url = data;
 
     elShareBtn.addEventListener('click', () => {
