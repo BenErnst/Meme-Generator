@@ -46,8 +46,6 @@ function initWebShareApi() {
 
     const title = window.document.title;
     var url = window.document.location.href;
-    const data = gCanvas.toDataURL("image/jpeg");
-    url = data;
 
     elShareBtn.addEventListener('click', () => {
         if (navigator.share) {
@@ -55,10 +53,11 @@ function initWebShareApi() {
                 title: `${title}`,
                 url: `${url}`
             })
-        } else {
-            elOverlay.classList.add('show-share-modal');
-            elShareModal.classList.add('show-share-modal');
         }
+        // else {
+        //     elOverlay.classList.add('show-share-modal');
+        //     elShareModal.classList.add('show-share-modal');
+        // }
     })
 
     elOverlay.addEventListener('click', () => {
