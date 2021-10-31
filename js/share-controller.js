@@ -47,7 +47,6 @@ const title = window.document.title;
 const url = window.document.location.href;
 const data = gCanvas.toDataURL();
 url = data;
-
 elShareBtn.addEventListener('click', () => {
     if (navigator.share) {
         navigator.share({
