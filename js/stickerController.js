@@ -15,7 +15,6 @@ function onAddSticker(img) {
 function initStickers(img) {
     gImg = img;
     const center = { x: gCanvas.width / 2, y: gCanvas.height / 2 };
-    // createSticker(center);
     createSticker(center);
     addListeners();
 }

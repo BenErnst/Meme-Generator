@@ -1,10 +1,8 @@
 'use strict';
 
 
-// 
 function uploadImg() {
     cleanLineRect();
-
 
     const imgDataUrl = gCanvas.toDataURL("image/jpeg");
 
@@ -33,7 +31,6 @@ function uploadImg() {
 }
 
 function doUploadImg(imgDataUrl, onSuccess) {
-
     const formData = new FormData();
     formData.append('img', imgDataUrl)
 
@@ -50,24 +47,14 @@ function doUploadImg(imgDataUrl, onSuccess) {
             console.error(err)
         })
 }
-//
 
-function showModal() {
-    const elOverlay = document.querySelector('.overlay');
-    const elShareModal = document.querySelector('.share-modal');
-    // elOverlay.classList.add('show-share-modal');
-    elOverlay.style.visibility = 'visible';
-    elShareModal.classList.add('show-share-modal');
-}
+//
 
 function initWebShareApi() {
     const elWebApiBtn = document.querySelector('.web-api-btn');
     const elOverlay = document.querySelector('.overlay');
-    // const elShareModal = document.querySelector('.share-modal');
-
     const title = window.document.title;
     var url = window.document.location.href;
-
     elWebApiBtn.addEventListener('click', () => {
         if (navigator.share) {
             navigator.share({
@@ -76,14 +63,19 @@ function initWebShareApi() {
             })
         }
     })
+    elOverlay.addEventListener('click', () => { closeModal() });
+}
 
-    elOverlay.addEventListener('click', () => { closeModal() })
+function showModal() {
+    const elOverlay = document.querySelector('.overlay');
+    const elShareModal = document.querySelector('.share-modal');
+    elOverlay.style.visibility = 'visible';
+    elShareModal.classList.add('show-share-modal');
 }
 
 function closeModal() {
     const elOverlay = document.querySelector('.overlay');
     const elShareModal = document.querySelector('.share-modal');
-    // elOverlay.classList.add('show-share-modal');
     elOverlay.style.visibility = 'hidden';
     elShareModal.classList.remove('show-share-modal');
 }

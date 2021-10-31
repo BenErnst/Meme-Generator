@@ -216,7 +216,6 @@ button:hover {
 
 .social-box {
     display: flex;
-    /* margin-left: 17px; */
     justify-content: center;
     align-items: center;
     padding: 0;
@@ -271,12 +270,10 @@ button:hover {
 }
 
 .overlay, .share-modal {
-    /* display: none; */
     visibility: hidden;
 }
 
 .show-share-modal {
-    /* display: block; */
     visibility: visible;
     top: 40%
 }
@@ -396,4 +393,3 @@ button:hover {
     }
 }
 
-/*  */
