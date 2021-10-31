@@ -12,6 +12,7 @@ function onInit() {
     renderCanvas();
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
+    initWebShareApi();
 }
 
 function renderGallery() {

@@ -39,28 +39,32 @@ function doUploadImg(imgDataUrl, onSuccess) {
 }
 //
 
-const elShareBtn = document.querySelector('.share-btn');
-const elOverlay = document.querySelector('.overlay');
-const elShareModal = document.querySelector('.share-modal');
+function initWebShareApi() {
+    const elShareBtn = document.querySelector('.share-btn');
+    const elOverlay = document.querySelector('.overlay');
+    const elShareModal = document.querySelector('.share-modal');
 
-const title = window.document.title;
-const url = window.document.location.href;
-const data = gCanvas.toDataURL();
-url = data;
-elShareBtn.addEventListener('click', () => {
-    if (navigator.share) {
-        navigator.share({
-            title: `${title}`,
-            url: `${url}`
-        })
-    } else {
-        elOverlay.classList.add('show-share-modal');
-        elShareModal.classList.add('show-share-modal');
-    }
-})
+    const title = window.document.title;
+    var url = window.document.location.href;
+    const data = gCanvas.toDataURL();
+    url = data;
 
-elOverlay.addEventListener('click', () => {
-    elOverlay.classList.remove('show-share-modal');
-    elShareModal.classList.remove('show-share-modal');
-})
+    elShareBtn.addEventListener('click', () => {
+        if (navigator.share) {
+            navigator.share({
+                title: `${title}`,
+                url: `${url}`
+            })
+        } else {
+            elOverlay.classList.add('show-share-modal');
+            elShareModal.classList.add('show-share-modal');
+        }
+    })
+
+    elOverlay.addEventListener('click', () => {
+        elOverlay.classList.remove('show-share-modal');
+        elShareModal.classList.remove('show-share-modal');
+    })
+}
+
 
