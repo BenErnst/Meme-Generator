@@ -19,7 +19,7 @@ function createImgs() {
 function createMeme() {
     gMeme = {
         selectedImgId: 1,
-        selectedLineIdx: 0,
+        selectedLineIdx: null,
         lines: [{
             txt: '',
             size: 50,
@@ -56,59 +56,49 @@ function setMemeImg(id) {
 }
 
 function setLineTxt(txt) {
-    const idx = gMeme.selectedLineIdx;
+    const idx = getSelectedLineIdx();
     gMeme.lines[idx].txt += txt;
-    drawMeme();
 }
 
 function deleteLineTxt(txt) {
-    const idx = gMeme.selectedLineIdx;
+    const idx = getSelectedLineIdx();
     gMeme.lines[idx].txt = txt;
-    drawMeme();
 }
 
 function resizeFont(action) {
-    const idx = gMeme.selectedLineIdx;
+    const idx = getSelectedLineIdx();
     if (action === 'increase') gMeme.lines[idx].size += 3;
     if (action === 'decrease') gMeme.lines[idx].size -= 3;
-    drawMeme();
 }
 
 function setFontType(fontType) {
-    const idx = gMeme.selectedLineIdx;
+    const idx = getSelectedLineIdx();
     gMeme.lines[idx].font = fontType;
 }
 
 function align(side) {
-    const idx = gMeme.selectedLineIdx;
+    const idx = getSelectedLineIdx();
     gMeme.lines[idx].align = side;
 }
 
 function moveTxtLine(action) {
-    const idx = gMeme.selectedLineIdx;
+    const idx = getSelectedLineIdx();
     if (action === 'up') gMeme.lines[idx].coords.y -= 3;
     if (action === 'down') gMeme.lines[idx].coords.y += 3;
-    drawMeme();
 }
 
 function switchLine() {
     if (gMeme.selectedLineIdx === 0) gMeme.selectedLineIdx++;
     else gMeme.selectedLineIdx--;
-    updatePlaceHolder(gMeme.selectedLineIdx);
-    clearInputVal();
-    const idx = gMeme.selectedLineIdx;
-    const x = gMeme.lines[idx].coords.x;
-    const y = gMeme.lines[idx].coords.y;
-    drawLineRect(x, y, idx);
 }
 
 function fillTxtColor(color) {
-    const idx = gMeme.selectedLineIdx;
+    const idx = getSelectedLineIdx();
     gMeme.lines[idx].fillColor = color;
 }
 
 function strokeTxtColor(color) {
-    const idx = gMeme.selectedLineIdx;
+    const idx = getSelectedLineIdx();
     gMeme.lines[idx].strokeColor = color;
 }
 
@@ -117,6 +107,10 @@ function resetMeme() {
 }
 
 // Getting gMeme Properties functions:
+
+function getSelectedLineIdx() {
+    return gMeme.selectedLineIdx;
+}
 
 function getImgUrl() {
     const img = gImgs.find(img => img.id === gMeme.selectedImgId);
@@ -134,7 +128,6 @@ function getTxtAlign(idx) {
 
 function getfillColor(idx) {
     return gMeme.lines[idx].fillColor;
-
 }
 
 function getStrokeColor(idx) {

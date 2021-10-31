@@ -1,6 +1,7 @@
 'use strict';
 
 var gSticker;
+var gStickers = [];
 
 function createSticker(pos) {
     gSticker = {
@@ -9,6 +10,7 @@ function createSticker(pos) {
         img: gImg,
         isDrag: false
     }
+    gStickers.push(gSticker);
 }
 
 function isStickerClicked(clickedPos) {
@@ -24,4 +26,8 @@ function setStickerDrag(isDrag) {
 function moveSticker(dx, dy) {
     gSticker.pos.x += dx;
     gSticker.pos.y += dy;
+}
+
+function clearStickers() {
+    gStickers = [];
 }

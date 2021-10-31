@@ -3,6 +3,7 @@
 var gCanvas;
 var gCtx;
 var gIsDeleteKeyDown = false;
+var gUserImg;
 
 function onInit() {
     createImgs();
@@ -31,13 +32,21 @@ function drawMeme() {
     img.src = getImgUrl();
 
     // Drawing Image:
-    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
+    if (gUserImg) renderImg(gUserImg);
+    else gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
 
     // Drawing Texts:
-    const topLine = gMeme.lines[0];
-    const bottomLine = gMeme.lines[1];
-    drawText(topLine.txt, topLine.coords.x, topLine.coords.y, 0);
-    drawText(bottomLine.txt, bottomLine.coords.x, bottomLine.coords.y, 1);
+    gMeme.lines.forEach((line, idx) => {
+        const x = line.coords.x;
+        const y = line.coords.y;
+        drawText(line.txt, x, y, idx);
+        if (idx === gMeme.selectedLineIdx) {
+            drawLineRect(x, y, idx);
+        }
+    })
+
+    // Drawing Stickers:
+    if (gStickers.length) drawExistStickers();
 }
 
 function drawText(text, x, y, idx) {
@@ -51,6 +60,7 @@ function drawText(text, x, y, idx) {
 }
 
 function onSetLineTxt(txtInput) {
+    if (!gMeme.selectedLineIdx) gMeme.selectedLineIdx = 0;
     var txt = '';
     if (gIsDeleteKeyDown) {
         txt = txtInput;
@@ -59,6 +69,7 @@ function onSetLineTxt(txtInput) {
         txt = (txtInput.length === 1) ? txtInput : txtInput.slice(-1);
         setLineTxt(txt);
     }
+    drawMeme();
 }
 
 function getEventKey(event) {
@@ -79,12 +90,15 @@ function backHome() {
     document.querySelector('.editor').style.display = 'none';
     document.querySelector('.gallery').style.display = 'grid';
     document.querySelector('.navbar h1').innerText = 'GALLERY';
+    gMeme.selectedLineIdx = null;
+    gUserImg = null;
     clearInputVal();
     resetColorInputs();
     clearCanvas();
     resetMeme();
-    updatePlaceHolder(gMeme.selectedLineIdx);
-    document.querySelector('.facebook-box').innerHTML = '';
+    updatePlaceHolder(0);
+    clearFacebookLogo();
+    clearStickers();
     console.clear();
 }
 
@@ -94,14 +108,20 @@ function clearCanvas() {
 
 function onSwitchLine() {
     switchLine();
+    const idx = getSelectedLineIdx();
+    updatePlaceHolder(idx);
+    clearInputVal();
+    drawMeme();
 }
 
 function onIncreaseFontSize() {
     resizeFont('increase');
+    drawMeme();
 }
 
 function onDecreaseFontSize() {
     resizeFont('decrease');
+    drawMeme();
 }
 
 function onSetFontType(fontType) {
@@ -116,10 +136,12 @@ function onAlign(side) {
 
 function onMoveTxtLineUp() {
     moveTxtLine('up');
+    drawMeme();
 }
 
 function onMoveTxtLineDown() {
     moveTxtLine('down');
+    drawMeme();
 }
 
 function clearInputVal() {
@@ -135,13 +157,11 @@ function drawLineRect(x, y, idx) {
     const fontSize = gMeme.lines[idx].size;
     gCtx.beginPath();
     gCtx.rect(x - (txtWidth / 2), y - fontSize + (fontSize / 10), txtWidth, fontSize);
-    gCtx.fillStyle = 'rgba(255, 0, 0, 0)';
+    gCtx.fillStyle = 'rgba(0, 0, 0, 0)';
     gCtx.fillRect(x - (txtWidth / 2), y - fontSize + (fontSize / 10), txtWidth, fontSize);
     gCtx.lineWidth = 5;
-    gCtx.strokeStyle = 'black';
+    gCtx.strokeStyle = 'rgba(0, 0, 0, 0.7)';
     gCtx.stroke();
-
-    setTimeout(() => { drawMeme(); }, 5000);
 }
 
 function onFillTxtColor(color) {
@@ -160,39 +180,84 @@ function resetColorInputs() {
     document.querySelector('#stroke-color').value = black;
 }
 
+function clearFacebookLogo() {
+    document.querySelector('.facebook-box').innerHTML = '';
+}
+
 
 // SHARING METHOD:
 
-function uploadImg() {
-    const imgDataUrl = gCanvas.toDataURL("image/jpeg");
+// // 
+// function uploadImg() {
+//     cleanLineRect();
 
-    // A function to be called if request succeeds
-    function onSuccess(uploadedImgUrl) {
-        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl);
+//     const imgDataUrl = gCanvas.toDataURL("image/jpeg");
 
-        document.querySelector('.facebook-box').innerHTML = `
-        <a class="btn share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
-        <img class="facebook-logo" src="icons/facebook-logo.png">
-        </a>`
+//     // A function to be called if request succeeds
+//     function onSuccess(uploadedImgUrl) {
+//         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl);
+
+//         document.querySelector('.facebook-box').innerHTML = `
+//         <a class="btn share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+//         <img class="facebook-logo" src="icons/facebook-logo.png">
+//         </a>`
+//     }
+//     doUploadImg(imgDataUrl, onSuccess);
+// }
+
+// function doUploadImg(imgDataUrl, onSuccess) {
+
+//     const formData = new FormData();
+//     formData.append('img', imgDataUrl)
+
+//     fetch('//ca-upload.com/here/upload.php', {
+//         method: 'POST',
+//         body: formData
+//     })
+//         .then(res => res.text())
+//         .then((url) => {
+//             console.log('Got back live url:', url);
+//             onSuccess(url)
+//         })
+//         .catch((err) => {
+//             console.error(err)
+//         })
+// }
+// // 
+
+// 
+function downloadMeme(elLink) {
+    cleanLineRect();
+    const data = gCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'my-meme.jpg';
+}
+// 
+
+function cleanLineRect() {
+    gMeme.selectedLineIdx = null;
+    drawMeme();
+}
+
+
+//  
+function onImgInput(ev) {
+    loadImageFromInput(ev, renderImg);
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    var reader = new FileReader();
+
+    reader.onload = function (event) {
+        var img = new Image();
+        img.onload = onImageReady.bind(null, img);
+        img.src = event.target.result;
+        gUserImg = img;
     }
-    doUploadImg(imgDataUrl, onSuccess);
+    reader.readAsDataURL(ev.target.files[0]);
 }
 
-function doUploadImg(imgDataUrl, onSuccess) {
-
-    const formData = new FormData();
-    formData.append('img', imgDataUrl)
-
-    fetch('//ca-upload.com/here/upload.php', {
-        method: 'POST',
-        body: formData
-    })
-        .then(res => res.text())
-        .then((url) => {
-            console.log('Got back live url:', url);
-            onSuccess(url)
-        })
-        .catch((err) => {
-            console.error(err)
-        })
+function renderImg(img) {
+    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
 }
+//

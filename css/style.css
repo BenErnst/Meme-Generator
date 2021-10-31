@@ -300,3 +300,38 @@ button:hover {
         transform: translateY(0px);
     }
 }
+
+/*  */
+
+.overlay {
+    opacity: 1;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.5);
+}
+
+.share-modal {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 30%;
+    margin: auto;
+    width: 25%;
+    z-index: 1;
+    padding: 1em;
+    background:wheat;
+    /* border: 3px solid dimgray;  */
+    border-radius: 10px;
+}
+
+.overlay, .share-modal {
+    display: none;
+}
+
+.show-share-modal {
+    display: block;
+}

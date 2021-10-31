@@ -15,6 +15,7 @@ function onAddSticker(img) {
 function initStickers(img) {
     gImg = img;
     const center = { x: gCanvas.width / 2, y: gCanvas.height / 2 };
+    // createSticker(center);
     createSticker(center);
     addListeners();
 }
@@ -91,3 +92,8 @@ function drawSticker(x, y, img, imgSize) {
     gCtx.drawImage(img, x - 50, y - 50, imgSize, imgSize);
 }
 
+function drawExistStickers() {
+    gStickers.forEach(sticker => {
+        drawSticker(sticker.pos.x, sticker.pos.y, sticker.img, sticker.size);
+    })
+}

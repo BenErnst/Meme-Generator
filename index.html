@@ -78,6 +78,19 @@
                 <div class="facebook-box"></div>
             </section>
 
+            <a href="#" onclick="downloadMeme(this)" download="">Download Meme</a>
+
+            <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+
+            <!--  -->
+            <button class="share-btn">Share This Meme</button>
+            <div class="overlay"></div>
+            <div class="share-modal">
+                <h2>Share Now</h2>
+                <button>Social Link</button>
+                <button>Social Link</button>
+                <button>Social Link</button>
+            </div>
         </div>
 
     </div>
@@ -89,6 +102,7 @@
     <script src="js/service/stickerService.js"></script>
     <script src="js/memeController.js"></script>
     <script src="js/service/memeService.js"></script>
+    <script src="js/share-controller.js"></script>
 </body>
 
 </html>
