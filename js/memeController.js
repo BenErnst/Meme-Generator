@@ -18,7 +18,9 @@ function onInit() {
 function renderGallery() {
     const elGallery = document.querySelector('.gallery');
     const strHTML = gImgs.map(img => {
-        return `<div class="img" onclick="setMemeImg(${img.id})" style="background: url(${img.url}); background-position: center center; background-size: cover;"></div>`;
+        return `<div class="img" onclick="setMemeImg(${img.id})" style="background: url(${img.url}); 
+        background-position: center center;
+        background-size: cover;"></div>`;
     })
     elGallery.innerHTML = strHTML.join('');
 }
@@ -51,7 +53,10 @@ function drawMeme() {
 }
 
 function drawText(text, x, y, idx) {
-    gCtx.textAlign = getTxtAlign(idx);
+    const align = getTxtAlign(idx)
+    gCtx.textAlign = align;
+
+    console.log(align);
     gCtx.lineWidth = 2;
     gCtx.strokeStyle = getStrokeColor(idx);
     gCtx.fillStyle = getfillColor(idx);
@@ -74,7 +79,7 @@ function onSetLineTxt(txtInput) {
 }
 
 function getEventKey(event) {
-    gIsDeleteKeyDown = (event.key === 'Backspace') ? true : false;
+    gIsDeleteKeyDown = (event.key === 'Backspace');
 }
 
 function showEditor() {

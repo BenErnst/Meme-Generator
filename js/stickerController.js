@@ -12,6 +12,13 @@ function onAddSticker(img) {
     initStickers(img);
 }
 
+
+function addMouseListeners() {
+    gCanvas.addEventListener('mousemove', onMove);
+    gCanvas.addEventListener('mousedown', onDown);
+    gCanvas.addEventListener('mouseup', onUp);
+}
+
 function initStickers(img) {
     gImg = img;
     const center = { x: gCanvas.width / 2, y: gCanvas.height / 2 };
@@ -35,11 +42,6 @@ function addListeners() {
     })
 }
 
-function addMouseListeners() {
-    gCanvas.addEventListener('mousemove', onMove);
-    gCanvas.addEventListener('mousedown', onDown);
-    gCanvas.addEventListener('mouseup', onUp);
-}
 
 function addTouchListeners() {
     gCanvas.addEventListener('touchmove', onMove);
