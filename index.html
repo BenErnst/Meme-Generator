@@ -1,116 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Meme Generator</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meme Generator</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body onload="onInit()">
-
-    <div class="top-bar">
-        <header class="header">
-            <img src="logo/logo.png">
-        </header>
-        <nav class="navbar">
-            <h1>GALLERY</h1>
-            <h1>Saved-Memes</h1>
-        </nav>
-    </div>
-
-    <button onclick="backHome()" class="home-btn">🏠</button>
-
-    <div class="editor">
-
-        <div class="canvas-box"></div>
-
-        <div class="control-box">
-
-            <section class="text-lines-box">
-                <label for="text-line"></label>
-                <input oninput="onSetLineTxt(this.value)" onkeydown="getEventKey(event)" type="text" id="text-line"
-                    name="text-line" placeholder="Text 1" autocomplete="off" />
-
-                <button class="switch-line-btn" onclick="onSwitchLine()">
-                    <img src="icons/up-and-down-opposite-double-arrows-side-by-side.png">
-                </button>
-            </section>
-
-            <section class="font-props-box">
-                <section class="font-resizing-btns">
-                    <button onclick="onIncreaseFontSize()"><img src="icons/increase font - icon.png"></button>
-                    <button onclick="onDecreaseFontSize()"><img src="icons/decrease font - icon.png"></button>
-                </section>
-
-                <select onchange="onSetFontType(this.value)" class="font-type-dropdown">
-                    <option value="Impact">Impact</option>
-                    <option value="Arial">Arial</option>
-                    <option value="Cursive">Cursive</option>
-                </select>
-
-                <section class="align-btns">
-                    <button onclick="onAlign('right')"><img src="icons/align-to-left.png"></button>
-                    <button onclick="onAlign('center')"><img src="icons/center-text-alignment.png"></button>
-                    <button onclick="onAlign('left')"><img src="icons/align-to-right.png"></button>
-                </section>
-            </section>
-
-            <section class="moving-and-colors-btns">
-                <section class="txtlines-moving-btns">
-                    <button onclick="onMoveTxtLineUp()"><img src="icons/up-arrow-icon.png"></button>
-                    <button onclick="onMoveTxtLineDown()"><img src="icons/down-arrow-icon.png"></button>
-                </section>
-
-                <section class="color-inputs">
-                    <input oninput="onFillTxtColor(this.value)" type="color" name="txt-color" id="txt-color" />
-                    <input oninput="onStrokeTxtColor(this.value)" type="color" name="stroke-color" id="stroke-color" />
-                </section>
-            </section>
-
-            <section class="stickers-box">
-                <img src="stickers/hat-sticker.png" onclick="onAddSticker(this)" id="stickerImg">
-                <img src="stickers/sunglasses-sticker.png" onclick="onAddSticker(this)" id="stickerImg">
-                <img src="stickers/cigarette-sticker.png" onclick="onAddSticker(this)" id="stickerImg">
-            </section>
-
-            <section class="sharing-box">
-
-                <section class="social-box">
-                    <button class="upload-btn" onclick="uploadImg()">Share Meme</button>
-                </section>
-
-                <a href="#" class="download-btn" onclick="downloadMeme(this)" download="">Download Meme</a>
-
-                <input type="file" name="image" onchange="onImgInput(event)" />
-
-                <button class="web-api-btn">Let Your Friends Generate Their Meme</button>
-                <div class="overlay"></div>
-                <div class="share-modal">
-                    <button onclick="closeModal()">X</button>
-                    <h2>SHARE YOUR MEME</h2>
-                    <section>
-                        <div class="facebook-box"></div>
-                        <div class="whatsapp-box"></div>
-                        <div class="twitter-box"></div>
-                    </section>
-                </div>
-
-            </section>
-
+    <body onload="onInit()">
+        <div class="top-bar">
+            <header class="header">
+                <img src="logo/logo.png" />
+            </header>
+            <nav class="navbar">
+                <h1>GALLERY</h1>
+            </nav>
         </div>
 
-    </div>
+        <button onclick="backHome()" class="home-btn">🏠</button>
 
-    <section class="gallery"></section>
+        <div class="editor">
+            <div class="canvas-box"></div>
 
-    <script src="js/stickerController.js"></script>
-    <script src="js/service/stickerService.js"></script>
-    <script src="js/memeController.js"></script>
-    <script src="js/service/memeService.js"></script>
-    <script src="js/share-controller.js"></script>
-</body>
+            <div class="control-box">
+                <section class="text-lines-box">
+                    <label for="text-line"></label>
+                    <input
+                        oninput="onSetLineTxt(this.value)"
+                        onkeydown="getEventKey(event)"
+                        type="text"
+                        id="text-line"
+                        name="text-line"
+                        placeholder="Text 1"
+                        autocomplete="off"
+                    />
 
+                    <button class="switch-line-btn" onclick="onSwitchLine()">
+                        <img src="icons/up-and-down-opposite-double-arrows-side-by-side.png" />
+                    </button>
+                </section>
+
+                <section class="font-props-box">
+                    <section class="font-resizing-btns">
+                        <button onclick="onIncreaseFontSize()">
+                            <img src="icons/increase font - icon.png" />
+                        </button>
+                        <button onclick="onDecreaseFontSize()">
+                            <img src="icons/decrease font - icon.png" />
+                        </button>
+                    </section>
+
+                    <select onchange="onSetFontType(this.value)" class="font-type-dropdown">
+                        <option value="Impact">Impact</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Cursive">Cursive</option>
+                    </select>
+
+                    <section class="align-btns">
+                        <button onclick="onAlign('right')">
+                            <img src="icons/align-to-left.png" />
+                        </button>
+                        <button onclick="onAlign('center')">
+                            <img src="icons/center-text-alignment.png" />
+                        </button>
+                        <button onclick="onAlign('left')">
+                            <img src="icons/align-to-right.png" />
+                        </button>
+                    </section>
+                </section>
+
+                <section class="moving-and-colors-btns">
+                    <section class="txtlines-moving-btns">
+                        <button onclick="onMoveTxtLineUp()">
+                            <img src="icons/up-arrow-icon.png" />
+                        </button>
+                        <button onclick="onMoveTxtLineDown()">
+                            <img src="icons/down-arrow-icon.png" />
+                        </button>
+                    </section>
+
+                    <section class="color-inputs">
+                        <input
+                            oninput="onFillTxtColor(this.value)"
+                            type="color"
+                            name="txt-color"
+                            id="txt-color"
+                        />
+                        <input
+                            oninput="onStrokeTxtColor(this.value)"
+                            type="color"
+                            name="stroke-color"
+                            id="stroke-color"
+                        />
+                    </section>
+                </section>
+
+                <section class="stickers-box">
+                    <img
+                        src="stickers/hat-sticker.png"
+                        onclick="onAddSticker(this)"
+                        id="stickerImg"
+                    />
+                    <img
+                        src="stickers/sunglasses-sticker.png"
+                        onclick="onAddSticker(this)"
+                        id="stickerImg"
+                    />
+                    <img
+                        src="stickers/cigarette-sticker.png"
+                        onclick="onAddSticker(this)"
+                        id="stickerImg"
+                    />
+                </section>
+
+                <section class="sharing-box">
+                    <section class="social-box">
+                        <button class="upload-btn" onclick="uploadImg()">Share Meme</button>
+                    </section>
+
+                    <a href="#" class="download-btn" onclick="downloadMeme(this)" download=""
+                        >Download Meme</a
+                    >
+
+                    <input type="file" name="image" onchange="onImgInput(event)" />
+
+                    <button class="web-api-btn">Let Your Friends Generate Their Meme</button>
+                    <div class="overlay"></div>
+                    <div class="share-modal">
+                        <button onclick="closeModal()">X</button>
+                        <h2>SHARE YOUR MEME</h2>
+                        <section>
+                            <div class="facebook-box"></div>
+                            <div class="whatsapp-box"></div>
+                            <div class="twitter-box"></div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <section class="gallery"></section>
+
+        <script src="js/stickerController.js"></script>
+        <script src="js/service/stickerService.js"></script>
+        <script src="js/memeController.js"></script>
+        <script src="js/service/memeService.js"></script>
+        <script src="js/share-controller.js"></script>
+    </body>
 </html>
